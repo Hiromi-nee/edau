@@ -2,7 +2,6 @@ import torch
 import torch.utils.data
 from PIL import Image
 import os
-import numpy as np
 import pandas as pd
 
 class CSVImageDataset(torch.utils.data.Dataset):
@@ -10,6 +9,7 @@ class CSVImageDataset(torch.utils.data.Dataset):
         if transforms is not None:
             self.transforms = transforms
         else:
+            import torchvision.transforms as T
             self.transforms = T.Compose([T.ToTensor()])
         self.data = pd.read_csv(csv_path, sep=sep, header=header names=names)
         self.root = root
